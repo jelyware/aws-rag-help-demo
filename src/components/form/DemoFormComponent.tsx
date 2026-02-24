@@ -105,10 +105,13 @@ export const DemoForm: React.FC = () => {
         </div>
       </form>
 
-      <RightDrawerShell open={isHelpOpen} onClose={closeHelp} title={helpPayload?.title ?? "Help"}>
-        {/* Render your HelpDrawer inside, but it no longer needs to control positioning */}
-        <HelpDrawer open={isHelpOpen} onClose={closeHelp} title={helpPayload?.title ?? "Help"}>
-            {helpPayload?.body}
+      <RightDrawerShell
+        open={isHelpOpen}
+        onClose={closeHelp}
+        title={helpPayload?.title ?? "Help"}
+      >
+        <HelpDrawer viewingFromModal={false}>
+          {helpPayload?.body}
         </HelpDrawer>
       </RightDrawerShell>
     </>
