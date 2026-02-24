@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import HelpDrawer from "../help/HelpDrawerComponent";
 import { FieldWithHelp } from "./FieldWithHelpComponent";
+import { RightDrawerShell } from "../help/RightDrawerShellComponent";
 
 type HelpPayload = {
   title: string;
@@ -104,9 +105,12 @@ export const DemoForm: React.FC = () => {
         </div>
       </form>
 
-      <HelpDrawer open={isHelpOpen} onClose={closeHelp} title={helpPayload?.title ?? "Help"}>
-        {helpPayload?.body}
-      </HelpDrawer>
+      <RightDrawerShell open={isHelpOpen} onClose={closeHelp} title={helpPayload?.title ?? "Help"}>
+        {/* Render your HelpDrawer inside, but it no longer needs to control positioning */}
+        <HelpDrawer open={isHelpOpen} onClose={closeHelp} title={helpPayload?.title ?? "Help"}>
+            {helpPayload?.body}
+        </HelpDrawer>
+      </RightDrawerShell>
     </>
   );
 };
